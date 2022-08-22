@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "lint:fix": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix"
+    "lint:fix": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
+    "tsLint": "./node_modules/.bin/tsc --project ./tsconfig.json",
+    "prepare": "husky -D install"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^5.33.1",
@@ -17,7 +19,8 @@
     "next": "12.2.5",
     "prettier": "^2.7.1",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "sass": "^1.54.5"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
