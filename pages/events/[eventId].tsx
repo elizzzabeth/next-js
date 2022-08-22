@@ -1,12 +1,12 @@
 import React from "react";
 import type { NextPage } from "next";
 
-const HomePage: NextPage = () => {
+const EventDetailPage: NextPage = () => {
   return (
     <div>
-      <h1>Home page</h1>
+      <h1>Event detail page</h1>
     </div>
   );
 };
 
-export default HomePage;
+export default EventDetailPage;
