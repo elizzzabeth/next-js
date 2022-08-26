@@ -1,3 +1,4 @@
 import Button from "./button";
+import ErrorAlert from "./errorAlert";
 
-export { Button };
+export { Button, ErrorAlert };

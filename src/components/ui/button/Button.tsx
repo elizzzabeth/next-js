@@ -6,14 +6,23 @@ import classes from "./Button.module.scss";
 
 type Props = {
   children: React.ReactNode;
-  url: string;
+  url?: string;
+  onClick?: () => void;
 };
 
-const Button: React.FC<Props> = ({ children, url }) => {
+const Button: React.FC<Props> = ({ children, url, onClick }) => {
+  if (url) {
+    return (
+      <Link href={url}>
+        <a className={classes.btn}>{children}</a>
+      </Link>
+    );
+  }
+
   return (
-    <Link href={url}>
-      <a className={classes.btn}>{children}</a>
-    </Link>
+    <button className={classes.btn} onClick={onClick}>
+      {children}
+    </button>
   );
 };
 

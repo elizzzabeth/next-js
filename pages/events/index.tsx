@@ -1,18 +1,26 @@
 import React from "react";
 import type { NextPage } from "next";
-import { getFeaturedEvents } from "dummy-data";
+import { getAllEvents } from "dummy-data";
+import { useRouter } from "next/router";
 
 // components
 import EventList from "src/components/events/EventsList";
+import EventsSearch from "src/components/events/EventsSearch";
 
 const EventsPage: NextPage = () => {
-  const featureEvents = getFeaturedEvents();
+  const events = getAllEvents();
+  const router = useRouter();
+
+  const findEventsHandler = (year: string | undefined, month: string | undefined) => {
+    const fullPath = `/events/${year}/${month}`;
+    router.push(fullPath);
+  };
 
   return (
-    <div>
-      <h1>Events</h1>
-      <EventList items={featureEvents} />
-    </div>
+    <React.Fragment>
+      <EventsSearch onSearch={findEventsHandler} />
+      <EventList items={events} />
+    </React.Fragment>
   );
 };
 

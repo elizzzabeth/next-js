@@ -2,6 +2,7 @@ import React from "react";
 
 // components
 import { Button } from "src/components/ui";
+import { DateIcon, AddressIcon, ArrowRightIcon } from "src/components/icons";
 
 // styles
 import classes from "./EventItem.module.scss";
@@ -33,14 +34,21 @@ const EventItem: React.FC<Props> = ({ id, title, description, location, date, im
         <div>
           <h2>{title}</h2>
           <div className={classes.date}>
+            <DateIcon />
             <time>{readableDate}</time>
           </div>
           <div className={classes.address}>
+            <AddressIcon />
             <address>{formattedAddress}</address>
           </div>
         </div>
         <div className={classes.actions}>
-          <Button url={exploreLink}>Explore Event</Button>
+          <Button url={exploreLink}>
+            <span>Explore Event</span>
+            <span className={classes.icon}>
+              <ArrowRightIcon />
+            </span>
+          </Button>
         </div>
       </div>
     </li>
