@@ -6,22 +6,13 @@ import EventItem from "src/components/events/EventItem";
 // styles
 import classes from "./EventList.module.scss";
 
-type Props = {
-  items: {
-    id: string;
-    title: string;
-    description: string;
-    location: string;
-    date: string;
-    image: string;
-    isFeatured: boolean;
-  }[];
-};
+// types
+import { EventListPropsTypes } from "src/types/EventsPropsTypes"
 
-const EventList: React.FC<Props> = ({ items }) => {
+const EventList: React.FC<EventListPropsTypes> = ({ events }) => {
   return (
     <ul className={classes.list}>
-      {items.map((event) => (
+      {events.map((event) => (
         <EventItem
           key={event.id}
           id={event.id}

@@ -7,17 +7,10 @@ import { DateIcon, AddressIcon, ArrowRightIcon } from "src/components/icons";
 // styles
 import classes from "./EventItem.module.scss";
 
-type Props = {
-  id: string;
-  title: string;
-  description: string;
-  location: string;
-  date: string;
-  image: string;
-  isFeatured: boolean;
-};
+// types
+import { EventItemPropsTypes } from "src/types/EventsPropsTypes";
 
-const EventItem: React.FC<Props> = ({ id, title, description, location, date, image, isFeatured }) => {
+const EventItem: React.FC<EventItemPropsTypes> = ({ id, title, location, date, image }) => {
   const readableDate = new Date(date).toLocaleDateString("en-US", {
     day: "numeric",
     month: "long",

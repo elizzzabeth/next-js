@@ -1,35 +1,60 @@
 import React from "react";
 import type { NextPage } from "next";
-import { useRouter } from "next/router";
-import { getEventById } from "dummy-data";
+import { getEventById, getFeaturedEvents } from "src/helpers/apiUtil";
 
 // components
 import { EventSummary, EventLogistics, EventContent } from "src/components/eventDetail";
-import { ErrorAlert } from "src/components/ui";
 
-const EventDetailPage: NextPage = () => {
-  const router = useRouter();
+// types
+import { EventItemPropsTypes } from "src/types/EventsPropsTypes";
 
-  const eventId = router.query.eventId;
-  const event = getEventById(eventId);
+export type SelectedEventPropsTypes = {
+  selectedEvent: EventItemPropsTypes;
+};
 
-  if (!event) {
+const EventDetailPage: NextPage<SelectedEventPropsTypes> = ({ selectedEvent }: SelectedEventPropsTypes) => {
+  if (!selectedEvent) {
     return (
-      <ErrorAlert>
+      <div className="center">
         <p>No event found</p>
-      </ErrorAlert>
+      </div>
     );
   }
 
   return (
     <React.Fragment>
-      <EventSummary title={event?.title} />
-      <EventLogistics date={event?.date} address={event?.location} image={event?.image} imageAlt={event?.title} />
+      <EventSummary title={selectedEvent?.title} />
+      <EventLogistics
+        date={selectedEvent?.date}
+        address={selectedEvent?.location}
+        image={selectedEvent?.image}
+        imageAlt={selectedEvent?.title}
+      />
       <EventContent>
-        <p>{event?.description}</p>
+        <p>{selectedEvent?.description}</p>
       </EventContent>
     </React.Fragment>
   );
 };
+
+export async function getStaticProps(context: { params: { eventId: number } }) {
+  const eventId = context.params.eventId;
+  const event = await getEventById(eventId);
+
+  return {
+    props: { selectedEvent: event },
+    revalidate: 30
+  };
+}
+
+export async function getStaticPaths() {
+  const events = await getFeaturedEvents();
+  const paths = events.map((event) => ({ params: { eventId: event.id } }));
+
+  return {
+    paths,
+    fallback: true
+  };
+}
 
 export default EventDetailPage;
