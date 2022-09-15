@@ -1,5 +1,6 @@
 import React from "react";
 import type { NextPage } from "next";
+import Head from "next/head";
 import { getFeaturedEvents } from "src/helpers/apiUtil";
 
 // components
@@ -11,7 +12,10 @@ import { EventListPropsTypes } from "src/types/EventsPropsTypes";
 const HomePage: NextPage<EventListPropsTypes> = ({ events }: EventListPropsTypes) => {
   return (
     <div>
-      <h1>Home page</h1>
+      <Head>
+        <title>Featured Events</title>
+        <meta name="description" content="Find a lot of great events that allow you to evolve..." />
+      </Head>
       <EventList events={events} />
     </div>
   );

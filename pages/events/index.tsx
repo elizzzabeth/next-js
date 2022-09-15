@@ -1,4 +1,5 @@
 import React from "react";
+import Head from "next/head";
 import type { NextPage } from "next";
 import { getAllEvents } from "src/helpers/apiUtil";
 import { useRouter } from "next/router";
@@ -20,6 +21,10 @@ const EventsPage: NextPage<EventListPropsTypes> = ({ events }: EventListPropsTyp
 
   return (
     <React.Fragment>
+      <Head>
+        <title>All Events</title>
+        <meta name="description" content="Events..." />
+      </Head>
       <EventsSearch onSearch={findEventsHandler} />
       <EventList events={events} />
     </React.Fragment>

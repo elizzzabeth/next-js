@@ -1,6 +1,7 @@
 import React from "react";
 import type { NextPage } from "next";
 import { getEventById, getFeaturedEvents } from "src/helpers/apiUtil";
+import Head from "next/head";
 
 // components
 import { EventSummary, EventLogistics, EventContent } from "src/components/eventDetail";
@@ -23,6 +24,10 @@ const EventDetailPage: NextPage<SelectedEventPropsTypes> = ({ selectedEvent }: S
 
   return (
     <React.Fragment>
+      <Head>
+        <title>{selectedEvent.title}</title>
+        <meta name="description" content={selectedEvent.description} />
+      </Head>
       <EventSummary title={selectedEvent?.title} />
       <EventLogistics
         date={selectedEvent?.date}

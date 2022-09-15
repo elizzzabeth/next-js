@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image"
 
 // components
 import { Button } from "src/components/ui";
@@ -22,7 +23,7 @@ const EventItem: React.FC<EventItemPropsTypes> = ({ id, title, location, date, i
 
   return (
     <li className={classes.item}>
-      <img src={`/${image}`} alt={title} />
+      <Image src={`/${image}`} alt={title} width={250} height={160} />
       <div className={classes.content}>
         <div>
           <h2>{title}</h2>
